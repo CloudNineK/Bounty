@@ -15,7 +15,6 @@ const styles = theme => ({
     width: '100%',
     background: brown[500],
     boxShadow: '0px 0px',
-    position: 'fixed',
   },
   innerText: {
     padding: '5%',

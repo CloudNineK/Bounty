@@ -41,7 +41,7 @@ const styles = theme => ({
     display: 'inline-block'
   },
   vertCenter:  {
-    width: '20%',
+    width: '30%',
     margin: 0,
     position: 'absolute',
     top: '50%',
