@@ -9,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import UserBarIndicator from './UserBarIndicator.js';
 
 
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -37,7 +38,7 @@ const styles = theme => ({
     marginRight: 20
   },
   searchIcon: {
-    width: theme.spacing.unit * 9,
+    width: theme.spacing(9),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -50,10 +51,10 @@ const styles = theme => ({
     width: '100%',
   },
   inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
+    paddingTop: theme.spacing(),
+    paddingRight: theme.spacing(),
+    paddingBottom: theme.spacing(),
+    paddingLeft: theme.spacing(10),
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -150,4 +151,4 @@ class Bar extends React.Component {
 
 }
 
-export default withRouter(withStyles(styles)(Bar));
+export default withStyles(styles) (Bar)

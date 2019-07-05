@@ -4,6 +4,17 @@ import FaceIcon from '@material-ui/icons/Face';
 import Login from './Login.js'
 import { withStyles } from '@material-ui/core/styles'
 
+import withFirebaseAuth from 'react-with-firebase-auth'
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from '../firebaseConfig';
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseAppAuth = firebaseApp.auth();
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
 const styles = theme => ({
   avatar: {
     backgroundColor: theme.palette.secondary[500]
@@ -24,6 +35,8 @@ class UserBarIndicator extends React.Component {
       name, classes
     } = this.props;
 
+    const { user, signOut, signInWithGoogle, } = this.props;
+
     let loginModal =
       <>
         <Button 
@@ -36,6 +49,7 @@ class UserBarIndicator extends React.Component {
           open={loginOpen}
           onClose={handleLoginClose}>
           <Login 
+          google={signInWithGoogle}
           handleLogin={handleLogin}
           handleClose={handleLoginClose}/>
         </Modal>
@@ -61,4 +75,8 @@ class UserBarIndicator extends React.Component {
   }
 }
 
-export default withStyles(styles)(UserBarIndicator);
+export default withStyles(styles) (
+  withFirebaseAuth({
+    providers,
+    firebaseAppAuth,}) (UserBarIndicator)
+  );

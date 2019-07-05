@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, Button, Typography, TextField, Grow} from '@material-ui/core'
+import { Dialog, Button, TextField, } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
 
 // TODO: Make this a responsive full screen component where the paper
@@ -7,26 +7,26 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   main: {
-    margin: theme.spacing.unit * 3,
+    margin: theme.spacing(3),
     width: '80%',
   },
   paper: {
-    marginTop: theme.spacing.unit * 4,
+    marginTop: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
     padding: '10%',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(),
+    marginRight: theme.spacing(),
   },
   bounty: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(),
+    marginRight: theme.spacing(),
     maxWidth: '30%',
   },
   button: { 
-    margin: theme.spacing.unit,
+    margin: theme.spacing(),
   },
 });
 

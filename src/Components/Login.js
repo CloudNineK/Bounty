@@ -2,15 +2,13 @@ import React from 'react';
 import { Paper, Grid, Button, Typography, TextField} from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
 
-import { withFirebase } from './Firebase'
-
 const styles = theme => ({
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 5,
-    marginRight: theme.spacing.unit * 5,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+    marginLeft: theme.spacing(5),
+    marginRight: theme.spacing(5),
+    [theme.breakpoints.up(400 + theme.spacing(3) * 2)]: {
       width: 400,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -20,17 +18,16 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 5}px ${theme.spacing.unit * 3}px`,
+    padding: `${theme.spacing(2)}px ${theme.spacing(5)}px ${theme.spacing(3)}px`,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
-  },
+    marginTop: theme.spacing(),  },
   submit: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   createAcc: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
     width: '100%',
     display: 'block'
   },
@@ -38,7 +35,7 @@ const styles = theme => ({
     textAlign: 'center',
     display: 'inline-block',
     width: '100%',
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
   },
   block: {
     display: 'inline-block'
@@ -60,6 +57,7 @@ const styles = theme => ({
     textAlign: 'center'
   }
 });
+
 
 class Login extends React.Component {
   constructor() {
@@ -114,7 +112,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { google, classes } = this.props;
 
     let login = (
       <Paper className={classes.vertCenter}>
@@ -149,12 +147,22 @@ class Login extends React.Component {
           variant="contained"
           color="primary"
           fullWidth
-          onClick={this.onLogin.bind(this)}
+          onClick={() => console.log('nothing')}
           className={classes.submit}>
           Sign in
         </Button>
 
-        <Grid container spacing={24}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={google}
+          className={classes.submit}>
+          Google
+        </Button>
+
+        <Grid container spacing={3}>
 
           <Grid item xs={5}>
           </Grid>
@@ -193,4 +201,4 @@ class Login extends React.Component {
   }
 }
 
-export default withStyles(styles)(withFirebase(Login));
+export default withStyles(styles)(Login)

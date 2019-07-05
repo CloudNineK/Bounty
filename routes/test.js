@@ -2,15 +2,13 @@ const serviceAccount = require('./service-account.json');
 const admin = require('firebase-admin');
 const casual = require('casual');
 
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://web-dev-a6.firebaseio.com'
+  databaseURL: "https://bounty-crowd-app.firebaseio.com"
 });
 
 const db = admin.firestore();
 
-const users = db.collection('users');
 const bounties = db.collection('bounties');
 
 
@@ -26,6 +24,6 @@ const addBounty = async () => {
 }
 
 let i;
-for (i = 0; i < 3; i++) {
+for (i = 0; i < 10; i++) {
   addBounty();
 }

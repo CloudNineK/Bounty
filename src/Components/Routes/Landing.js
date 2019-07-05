@@ -2,15 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Grid, Typography, Button } from '@material-ui/core';
 import { brown, grey } from '@material-ui/core/colors'
-import CardJumbo from './Bounty/CardJumbo'
+import BCard from '../Bounty/BCard'
 import { withRouter } from 'react-router-dom'
-
-const l = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-           Duis ultricies nibh neque, id elementum tortor tempus nec. Morbi 
-           felis felis, maximus ut velit vel, rhoncus consequat orci. Sed mattis 
-           porta urna ut faucibus. Aenean in laoreet erat. Quisque vitae ipsum 
-           est. Suspendisse felis sapien, sodales sit amet rutrum sit amet, 
-           laoreet sed massa.`
 
 const styles = theme => ({
   hide: {
@@ -61,7 +54,7 @@ class Landing extends React.Component {
     return (
       <div className={classes.hide}>
       <Paper className={classes.root} square={true}>
-        <Grid container spacing={16}>
+        <Grid container spacing={2}>
           <Grid item xs={5}>
             <div className={classes.innerText}>
               <Typography variant='h2' className={classes.white}>
@@ -86,10 +79,7 @@ class Landing extends React.Component {
 
           <Grid item xs={7}>
             <div className={classes.inner}>
-              <CardJumbo
-                userName="SomeUser"
-                subject="Vivamus Aliquet Erat Sit Amet"
-                description={l}/>
+              <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Jumbo'/>
             </div>
           </Grid>
         </Grid>

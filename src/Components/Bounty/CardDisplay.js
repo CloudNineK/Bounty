@@ -1,15 +1,15 @@
 import React from 'react';
-import BountyCard from './BountyCard'
-import BountyFab from './BountyFab';
+import BCard from './BCard'
+import BFab from './BFab';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   main: {
-    margin: theme.spacing.unit*3,
+    margin: theme.spacing(3),
   },
   fab: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(),
     top: 'auto',
     right: 20,
     bottom: 20,
@@ -37,17 +37,16 @@ class CardDisplay extends React.Component {
 
   update() {
     let cards = [];
-    fetch('/api/bounties/all', {method: 'GET'})
+    fetch('/bounty/all', {method: 'GET'})
       .then(res => res.json())
       .then(data => {
         // add cards from response to array
         data.forEach(
-          data => cards.push(<BountyCard 
-            subject={data.subject}
-            description={data.description}
-            userName={data.user}
-            bounty={data.bounty}
-            key={data.userName+data.subject}/>)
+          id => cards.push(
+          <BCard 
+            id={id}
+            key={id}
+            />)
         )
         // set card array as state
         this.setState({cards: cards});
@@ -59,11 +58,11 @@ class CardDisplay extends React.Component {
 
     let normal = (
       <div className={classes.main}>
-        <Grid container spacing={24}>
+        <Grid container spacing={3}>
           {this.state.cards}
         </Grid>
 
-        <BountyFab update={this.update.bind(this)}/>
+        <BFab update={this.update.bind(this)}/>
       </div>
     );
 

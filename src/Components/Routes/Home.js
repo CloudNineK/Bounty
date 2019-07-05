@@ -1,36 +1,35 @@
 import React from 'react';
-import Featured from './Bounty/Featured'
-import Recommended from './Bounty/Recommended'
-import CardDisplay from './Bounty/CardDisplay'
+import CardDisplay from '../Bounty/CardDisplay'
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Divider, Typography} from '@material-ui/core';
 import { brown } from '@material-ui/core/colors'
+import BCard from '../Bounty/BCard';
 
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(),
     flexGrow: 1,
     textTransform: 'none',
   },
   header: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(),
     display: 'flex'
   },
   pad: {
-    marginLeft: theme.spacing.unit*3,
-    marginRight: theme.spacing.unit*3,
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
   },
   main: {
     display: 'flex',
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
     alignItems: 'stretch',
     height: 500
   },
   featured: {
     flexGrow: 7,
     minWidth: 140,
-    marginRight: theme.spacing.unit*2,
+    marginRight: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
   },
@@ -39,7 +38,7 @@ const styles = theme => ({
     flexDirection: 'column',
     flexGrow: 3,
     minWidth: 60,
-    marginLeft: theme.spacing.unit*2
+    marginLeft: theme.spacing(2)
   },
   mainText: {
     textColor: brown[500],
@@ -73,12 +72,13 @@ class Landing extends React.Component {
 
         {/* Topline */}
         <div className={classes.main}>
+
           {/* Featured Bounty */}
           <div className={classes.featured}>
             <Typography variant='h5' color='primary'>
               Featured 
             </Typography>
-            <Featured/>
+            <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Featured'/>
           </div>
 
           {/* Recommended Bounties */}
@@ -86,9 +86,9 @@ class Landing extends React.Component {
             <Typography variant='h5' color='primary'>
               Trending
             </Typography>
-            <Recommended/>
-            <Recommended/>
-            <Recommended/>
+            <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Recommended'/>
+            <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Recommended'/>
+            <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Recommended'/>
           </div>
         </div>
 

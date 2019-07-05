@@ -1,12 +1,12 @@
 import React from 'react';
-import BountyCard from './BountyCard'
-import BountyFab from './BountyFab';
+import BCard from './BCard'
+import BFab from './BFab';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   main: {
-    margin: theme.spacing.unit*3,
+    margin: theme.spacing(3),
   },
 });
 
@@ -25,7 +25,7 @@ class CardDisplay extends React.Component {
       .then(data => {
         // add cards from response to array
         data.forEach(
-          data => cards.push(<BountyCard 
+          data => cards.push(<BCard 
             subject={data.subject}
             description={data.description}
             userName={data.user}
@@ -42,7 +42,7 @@ class CardDisplay extends React.Component {
 
     return (
       <div className={classes.main}>
-        <Grid container spacing={24}>
+        <Grid container spacing={3}>
           {this.state.cards}
         </Grid>
       </div>

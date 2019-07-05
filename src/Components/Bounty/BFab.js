@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   fab: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(),
     top: 'auto',
     right: 20,
     bottom: 20,
@@ -15,7 +15,7 @@ const styles = theme => ({
   },
 });
 
-class BountyFab extends React.Component {
+class BFab extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -54,4 +54,4 @@ class BountyFab extends React.Component {
   }
 }
 
-export default withStyles(styles)(BountyFab);
+export default withStyles(styles)(BFab);
