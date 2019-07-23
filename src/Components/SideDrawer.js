@@ -2,10 +2,10 @@ import React from 'react';
 import { Drawer, List, ListItem, ListItemText, Divider, 
          Typography } from '@material-ui/core'
 import { withRouter } from 'react-router-dom'
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   list: {
     width: 250
   },
@@ -15,19 +15,14 @@ const styles = theme => ({
   menuItem: {
     fontWeight: 'bold'
   },
-});
+}));
 
 
+function SideDrawer(props) {
 
-class SideDrawer extends React.Component {
-  constructor() {
-    super();
-    this.state = { 
-    };
-  }
+    const { history, close } = props;
 
-  render() {
-    const { classes, history, close } = this.props;
+    const classes = useStyles();
 
     const drawerList = (
       <div className={classes.list}>
@@ -64,17 +59,12 @@ class SideDrawer extends React.Component {
 
     return (
         <Drawer 
-          open={this.props.isOpen}
-          onClose={this.props.close}>
+          open={props.isOpen}
+          onClose={props.close}>
           {drawerList}
         </Drawer>
     )
 
-  }
-
-  componentDidMount() {
-    this.setState({ someKey: 'otherValue' });
-  }
 }
 
-export default withRouter(withStyles(styles)(SideDrawer));
+export default withRouter(SideDrawer);

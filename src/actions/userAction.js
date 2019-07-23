@@ -1,0 +1,8 @@
+import { UPDATE_USER } from './actionTypes' 
+
+export const updateUser = (user) => ({
+  type: UPDATE_USER,
+  payload: {
+    user: user
+  }
+})

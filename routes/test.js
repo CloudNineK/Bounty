@@ -11,14 +11,28 @@ const db = admin.firestore();
 
 const bounties = db.collection('bounties');
 
+const categories = [
+  "Technology",
+  "Crafts",
+  "Gaming",
+  "Art",
+  "Music",
+  "Misc.",
+]
+
+const cat = () => categories[Math.floor(Math.random() * 6)]
+
 
 const addBounty = async () => {
   let card = {
     user: casual.first_name,
     subject: casual.title,
     description: casual.text,
+    category: cat(),
+    backers: 0,
     bounty: Math.floor(Math.random()*300)
   }
+  console.log(card)
   let doc = await bounties.add(card)
   console.log(doc.id)
 }

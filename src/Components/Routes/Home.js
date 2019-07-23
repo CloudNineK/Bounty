@@ -78,7 +78,7 @@ class Landing extends React.Component {
             <Typography variant='h5' color='primary'>
               Featured 
             </Typography>
-            <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Featured'/>
+            <BCard id='3qiVYfoDTcs3QbnQ45PN' variant='Featured'/>
           </div>
 
           {/* Recommended Bounties */}
@@ -86,9 +86,9 @@ class Landing extends React.Component {
             <Typography variant='h5' color='primary'>
               Trending
             </Typography>
-            <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Recommended'/>
-            <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Recommended'/>
-            <BCard id='Nz5Ukws8BHioDu7m7Xe5' variant='Recommended'/>
+            <BCard id='3qiVYfoDTcs3QbnQ45PN' variant='Recommended'/>
+            <BCard id='3qiVYfoDTcs3QbnQ45PN' variant='Recommended'/>
+            <BCard id='3qiVYfoDTcs3QbnQ45PN' variant='Recommended'/>
           </div>
         </div>
 

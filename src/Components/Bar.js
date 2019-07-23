@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import UserBarIndicator from './UserBarIndicator.js';
+import UserBarIndicator from './UserBarIndicator'
 
 
 
@@ -68,26 +68,9 @@ class Bar extends React.Component {
   constructor() {
     super();
     this.state = { 
-      loginOpen: false,
       drawerOpen: false,
-      user: {
-        name: '',
-        password: ''
-      },
-      name: '',
     };
   }
-
-  handleLoginOpen = () => this.setState({loginOpen: true})
-  handleLoginClose = () => this.setState({loginOpen: false})
-
-  handleLogin = userObj => this.setState({user: userObj, name: userObj.name})
-  handleLogout = () => this.setState({
-    user: {
-      name: '',
-      password: ''
-    }
-  })
 
   openDrawer = () => this.setState({drawerOpen: true})
   closeDrawer= () => this.setState({drawerOpen: false})
@@ -131,14 +114,7 @@ class Bar extends React.Component {
               />
             </div>
 
-            <UserBarIndicator
-              handleLoginOpen={this.handleLoginOpen.bind(this)}
-              handleLoginClose={this.handleLoginClose.bind(this)}
-              handleLogin={this.handleLogin.bind(this)}
-              handleLogout={this.handleLogout.bind(this)}
-              loginOpen={this.state.loginOpen}
-              showUser={this.state.user.name === ''}
-              name={this.state.name}/>
+            <UserBarIndicator/>
 
           </Toolbar>
         </AppBar>
@@ -151,4 +127,4 @@ class Bar extends React.Component {
 
 }
 
-export default withStyles(styles) (Bar)
+export default withRouter(withStyles(styles) (Bar))

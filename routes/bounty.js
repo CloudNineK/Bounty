@@ -57,8 +57,13 @@ router.get('/random', async (_, res) => {
 });
 
 router.post('/add', async (req, res) => {
-  let doc = await bounties.add(req.body);
-  res.status(200).send({id: doc.id, ...req.body});
+  let data = {
+    ...req.body,
+    backers: 0
+  }
+
+  let doc = await bounties.add(data);
+  res.status(200).send({id: doc.id, ...data});
 });
 
 module.exports = router

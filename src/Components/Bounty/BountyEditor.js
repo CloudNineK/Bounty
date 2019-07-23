@@ -1,14 +1,13 @@
-import React from 'react';
-import { Dialog, Button, TextField, } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { Dialog, DialogContent, Button, TextField, DialogTitle, FormControl, 
+  MenuItem, Select, InputLabel} from '@material-ui/core'
+import { makeStyles} from '@material-ui/core/styles';
 
-// TODO: Make this a responsive full screen component where the paper
-//       is scrollable
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   main: {
-    margin: theme.spacing(3),
-    width: '80%',
+    display: 'flex',
+    flexDirection: 'column',
   },
   paper: {
     marginTop: theme.spacing(4),
@@ -19,6 +18,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing(),
     marginRight: theme.spacing(),
+    display: 'flex'
   },
   bounty: {
     marginLeft: theme.spacing(),
@@ -28,108 +28,115 @@ const styles = theme => ({
   button: { 
     margin: theme.spacing(),
   },
-});
+}));
 
-class FavorEditor extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      subject: '',
-      description: '',
-      user: '',
-      bounty: 0 
-    };
-  }
 
-  onChangeSubject = (e) => {
-    this.setState({subject: e.target.value});
-  }
+export default function BountyEditor(props) {
+  const [values, useValues] = useState({
+    subject: '',
+    description: '',
+    user: '',
+    bounty: 0,
+    category: ''
+  });
 
-  onChangeDescription = (e) => {
-    this.setState({description: e.target.value});
-  }
-
-  onChangeBounty = (e) => {
-    this.setState({bounty: e.target.value});
-  }
-
-  submit = () => {
-    if (this.state.subject === '' || this.state.password === '') {
-      alert('Username and Password Required');
-      return;
-    }
-
-    let data = {
-      user: this.props.userName,
-      subject: this.state.subject,
-      description: this.state.description,
-      bounty: this.state.bounty,
-    }
+  const submit = () => {
 
     fetch('/api/bounties/add', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(data)
+      body: JSON.stringify(values)
     })
-    .then(this.props.update())
-    .then(this.props.close())
-
+    .then(props.close())
   }
 
-  render() {
-    const { classes, isOpen, close} = this.props;
+  const handleChange = event => {
+    useValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+    console.log(values)
+  }
 
-    return (
-        <Dialog fullWidth disableAutoFocus={true}
-          open={isOpen} onClose={close}>
-            <TextField
-              required
-              className={classes.textField}
-              id="Subject"
-              label="Subject"
-              margin="normal"
-              onChange={this.onChangeSubject.bind(this)}
-            />
+  const { isOpen, close } = props;
+  const classes = useStyles();
 
-            <TextField
-              required
-              className={classes.textField}
-              id="Description"
-              label="Description"
-              margin="normal"
-              fullWidth
-              multiline
-              rows='6'
-              variant='outlined'
-              onChange={this.onChangeDescription.bind(this)}
-            />
+  return (
+      <Dialog fullWidth disableAutoFocus={true}
+        open={isOpen} onClose={close} className={classes.main}>
 
-            <TextField
-              required
-              className={classes.bounty}
-              id="Bounty"
-              label="Bounty"
-              margin="normal"
-              variant='outlined'
-              type="number"
-              onChange={this.onChangeBounty.bind(this)}
-            />
+          <DialogTitle>
+            Create a Bounty
+          </DialogTitle>
 
-            <div align='right'>
-            <Button
-              className={classes.button}
-              color="primary"
-              onClick={this.submit}
+          <DialogContent dividers>
+
+          <TextField
+            required
+            className={classes.textField}
+            name='subject'
+            id="Subject"
+            label="Subject"
+            margin="normal"
+            onChange={handleChange}
+          />
+
+          <TextField
+            required
+            className={classes.textField}
+            id="Description"
+            name="description"
+            label="Description"
+            margin="normal"
+            multiline
+            rows='6'
+            variant='outlined'
+            onChange={handleChange}
+          />
+
+          <FormControl fullWidth className={classes.textField}>
+            <InputLabel> Category</InputLabel>
+            <Select
+              value={values.category}
+              onChange={handleChange}
+              inputProps={{
+                name: 'category',
+                id: 'category',
+              }}
             >
-              Submit
-            </Button>
-            </div>
-        </Dialog>
-    );
-  }
+              <MenuItem value={"Technology"}>Technology</MenuItem>
+              <MenuItem value={"Crafts"}>Crafts</MenuItem>
+              <MenuItem value={"Gaming"}>Gaming</MenuItem>
+              <MenuItem value={"Art"}>Arts</MenuItem>
+              <MenuItem value={"Music"}>Music</MenuItem>
+              <MenuItem value={"Misc."}>Misc.</MenuItem>
+            </Select>
+          </FormControl>
 
-  componentDidMount() {
-  }
+
+          <TextField
+            required
+            className={classes.bounty}
+            id="Bounty"
+            name="bounty"
+            label="Bounty"
+            margin="normal"
+            variant='outlined'
+            type="number"
+            onChange={handleChange}
+          />
+
+        </DialogContent>
+
+          <div align='right'>
+          <Button
+            className={classes.button}
+            color="primary"
+            onClick={submit}
+          >
+            Submit
+          </Button>
+          </div>
+      </Dialog>
+  );
 }
-
-export default withStyles(styles)(FavorEditor);
